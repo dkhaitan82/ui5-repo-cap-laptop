@@ -1,0 +1,10 @@
+<mvc:View
+   controllerName="dk.sample.controller.Home"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+   displayBlock="true"
+   height="100%">
+			<Page title="Home">
+					<Button text="Page1" press="onPage1"/>
+			</Page>
+</mvc:View>
