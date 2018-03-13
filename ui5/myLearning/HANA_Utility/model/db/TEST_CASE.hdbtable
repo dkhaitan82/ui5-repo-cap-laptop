@@ -1,0 +1,24 @@
+table.schemaName = "HANA_UTIL";
+table.tableType = COLUMNSTORE; // ROWSTORE is an alternative value
+
+
+table.columns =
+[
+    {name = "BUSINESS_AREA"; 			sqlType = NVARCHAR;		length = 40;		comment = "Business Area"; nullable = false;},
+	{name = "TEST_CASE";                sqlType = NVARCHAR;		length = 40;		comment = "Test Case"; nullable = false;},
+    {name = "TEST_CASE_DESCRIPTION";    sqlType = NVARCHAR;		length = 3000;		comment = "Test Case Description";},
+    {name = "EXEC_TYPE";                sqlType = NVARCHAR;		length = 20;		comment = "Execution Type";},
+    {name = "AUTHOR";                   sqlType = NVARCHAR;		length = 20;		comment = "Author";},
+    {name = "CREATED_ON";               sqlType = DATE;		                        comment = "Created On";},
+    {name = "UPDATED_ON";               sqlType = DATE;		                        comment = "Updated On";},
+    {name = "SQL_CODE";                 sqlType = VARCHAR;		length = 5000;      comment = "SQL Code";},
+    {name = "IS_VALID";                 sqlType = INTEGER;		                    comment = "is Valid";},
+    {name = "IS_ACTIVE";                sqlType = INTEGER;		                    comment = "is Active";},
+    {name = "EXEC_DATE";                sqlType = DATE;		                        comment = "Executed On";},
+    {name = "RUN_TIME";                 sqlType = INTEGER;		                    comment = "Run Time";},
+    {name = "REC_COUNT";                sqlType = INTEGER;		                    comment = "Record Count";}
+];						 
+							 
+table.primaryKey.pkcolumns = ["BUSINESS_AREA",
+							  "TEST_CASE" 
+                              ];

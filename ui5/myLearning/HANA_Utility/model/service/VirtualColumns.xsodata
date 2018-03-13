@@ -1,0 +1,8 @@
+service  { 
+   "_SYS_BIC"."applications.utility.model.views/CA_DIM_VIRTUAL_COLUMNS"
+   as "VirtualColumns"
+   key("SCHEMA_NAME","TABLE_NAME","COLUMN_NAME")
+   create forbidden
+   update forbidden
+   delete forbidden;
+}  

@@ -1,0 +1,14 @@
+<mvc:View
+  controllerName="dk.sample.controller.Page1"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<App>
+		<pages>
+			<Page	id="page1"	title="Page1" navButtonPress="onNavBack" showNavButton="true">
+				<content>
+
+        </content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

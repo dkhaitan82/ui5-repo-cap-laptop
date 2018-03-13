@@ -1,0 +1,16 @@
+<mvc:View
+   controllerName="burberry.hana.util.controller.Home"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+   displayBlock="true"
+   height="100%">
+			<Page id="pageHome" class="homePageStyle" title="HANA Utilities">
+					<TileContainer>
+					    <StandardTile icon="sap-icon://action-settings" title="XS Job Dashboard" press="onGotoJobDashBoard" class="homeTileStyle"/>
+						<StandardTile icon="sap-icon://letter" title="Job Alert Configure"  press="onGotoJobs" class="homeTileStyle"/>
+						<StandardTile icon="sap-icon://table-chart" title="Virtual Columns" press="onGotoVC" class="homeTileStyle"/>
+						<StandardTile icon="sap-icon://clinical-tast-tracker" title="Job Log" press="onGotoJobLog" class="homeTileStyle" visible="false"/>
+						<StandardTile icon="sap-icon://paper-plane" title="Automatic Testing" press="onGotoTesting" class="homeTileStyle"/>
+					</TileContainer>
+			</Page>
+</mvc:View>

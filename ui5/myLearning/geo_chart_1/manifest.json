@@ -1,0 +1,92 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "dk.sample",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"CustSalesRemote": {
+				"uri": "/CustSales/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+	  "sap_belize"
+	]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": "dk.sample.view.App",
+		"dependencies": {
+			"minUI5Version": "1.30",
+			"libs": {
+				"sap.m": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "dk.sample.i18n.i18n"
+				}
+			},
+			"sales": {
+				"dataSource": "CustSalesRemote"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+		        }
+	                ]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "dk.sample.view",
+				"controlId": "app",
+				"controlAggregation": "pages"
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "home",
+					"target": "home"
+				},
+				{
+					"pattern": "page_1",
+					"name": "page_1",
+					"target": "page_1"
+		     }
+	  ],
+			"targets": {
+				"home": {
+					"viewName": "Home"
+				},
+				"page_1": {
+					"viewName": "Page1"
+				}
+			}
+		}
+	}
+}

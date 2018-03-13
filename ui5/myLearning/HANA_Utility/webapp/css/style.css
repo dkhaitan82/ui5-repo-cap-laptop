@@ -1,0 +1,30 @@
+.homePageStyle {
+  background-image: url(logo2.png);
+  background-repeat:no-repeat;   
+  background-position: 50% 10%;
+ }
+
+ .homeTileStyle{
+    border-radius: 12px;
+    box-shadow: 0 0 11px #000000;
+ }
+
+
+.masterPageStyle{
+   background-image: url(logo.png);
+   background-position: center bottom; 
+   background-repeat:no-repeat;    
+    
+}
+.detailPageStyle{
+   background-image: url(logo2.png);
+   background-position: center; 
+   background-repeat:no-repeat;    
+    
+}
+.VCErrorText{
+    color: red;
+}
+
+
+

@@ -1,0 +1,111 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	controllerName="burberry.hana.util.controller.DefineTestCase"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:fb="sap.ui.comp.filterbar">
+	<Page id="pageDefineTestCase" title="Test Cases">
+		<subHeader>
+			<Toolbar design="Transparent">
+				<content>
+					<Button icon="sap-icon://add" id="createTestCase" press="onCreateTestCase"	tooltip="Create Test Case"/>
+					<Button tooltip="Edit" icon="sap-icon://edit" press="onEditTestCase" />
+					<ToggleButton icon="sap-icon://multi-select" press="onMultiSelectEnable" />
+					<Button id="btnActivate" tooltip="Activate" icon="sap-icon://connected" press="onActivateTestCase" />
+					<Button id="btnDeactivate" tooltip="Deactivate" icon="sap-icon://disconnected" press="onActivateTestCase" />
+					<Button tooltip="Sort,Filter,Group" icon="sap-icon://drop-down-list" press="onSortFilterOpen" />
+					<ToolbarSpacer />
+					<Button id="deleteTestCase" icon="sap-icon://delete"	press="onDeleteTestCase"	tooltip="Delete Test Case"/>
+				</content>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<VBox>
+				<Table growing="true" growingThreshold="10" id="tableTestCase"
+			items="{path:'tcd>/TestCase'}"
+			mode="{app>/data/test/test_case_table_select_mode}" 
+			selectionChange="onTestCaseSelect"
+			busyIndicatorDelay="500"
+			enableBusyIndicator="true"
+			>
+					<!-- Note: mode="SingleSelectLeft","MultiSelect"-->
+					<headerToolbar></headerToolbar>
+					<infoToolbar>
+						<Toolbar id="filterBar" visible="false">
+							<Label id="filterBarLabel" text="" />
+						</Toolbar>
+					</infoToolbar>
+					<columns>
+						<Column demandPopin="true" width="10rem">
+							<Text text="Test Name"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Large">
+							<Text text="Note"/>
+						</Column>
+						<Column minScreenWidth="Large" width="5rem">
+							<Text text="Author"/>
+						</Column>
+						<Column minScreenWidth="Large" width="5rem">
+							<Text text="Changed On"/>
+						</Column>
+						<Column minScreenWidth="Large" width="5rem">
+							<Text text="Last Executed"/>
+						</Column>
+						<Column demandPopin="true" width="3rem">
+							<Text text="Active"/>
+						</Column>
+						<Column demandPopin="true" width="3rem">
+							<Text text="Valid"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{tcd>BUSINESS_AREA}:{tcd>TEST_CASE}" tooltip="{tcd>SQL_CODE}"/>
+							</cells>
+							<cells>
+								<Text text="{
+								        path : 'tcd>TEST_CASE_DESCRIPTION',
+								        formatter:'.formatNote'
+								        }" tooltip="{tcd>TEST_CASE_DESCRIPTION}"/>
+							</cells>
+							<cells>
+								<Text text="{tcd>AUTHOR}"/>
+							</cells>
+							<cells>
+								<Text text="{
+						path:'tcd>UPDATED_ON',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+						    pattern: 'dd/MM/yyyy'
+						    }
+						}"/>
+							</cells>
+							<cells>
+								<Text text="{
+            						path:'tcd>EXEC_DATE',
+            						type: 'sap.ui.model.type.DateTime',
+            						formatOptions: {
+            						    pattern: 'dd/MM/yyyy'
+						    }
+						}"/>
+							</cells>
+							<cells>
+								<c:Icon src="{
+					        path:'tcd>IS_ACTIVE',
+					        formatter: '.formatActiveIcon'
+					    }"/>
+							</cells>
+							<cells>
+								<c:Icon src="{
+					        path:'tcd>IS_VALID',
+					        formatter: '.formatActiveIcon'
+					    }"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

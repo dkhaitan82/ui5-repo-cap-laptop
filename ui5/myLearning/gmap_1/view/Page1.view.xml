@@ -1,0 +1,14 @@
+<View controllerName="dk.sample.controller.Page1" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+			<Page id="page1" title="Geo Chart Example" navButtonPress="onNavBack" showNavButton="true">
+				<subHeader>
+					<Toolbar design="Transparent">
+						<content>
+							<Button text="Change Data" press="onChangeData" />
+							<Button text="Revert Back" press="onRevertBack" />
+							<ToolbarSpacer />
+						</content>
+					</Toolbar>
+				</subHeader>
+				<HBox id="geo_chart_canvas" class="myMap" fitContainer="true" justifyContent="Center" alignItems="Center" />
+			</Page>
+</View>

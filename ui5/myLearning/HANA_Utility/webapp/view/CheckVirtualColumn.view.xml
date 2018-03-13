@@ -1,0 +1,77 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	controllerName="burberry.hana.util.controller.CheckVirtualColumn"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:fb="sap.ui.comp.filterbar">
+	<Page id="pageCheckVC" title="Check Virtual Columns">
+		<subHeader>
+			<Toolbar  design="Transparent">
+				<content>
+					<Button icon="sap-icon://upload" 
+    								id="btnUploadVC" 
+    								press="onUploadVC"	
+    								tooltip="Upload Backup Virtual Columns to compare"/>
+					<Title id="statusTitle" text="" />
+					<ToolbarSpacer/>
+					<Select
+    							id="selectSchema"
+    							change="onSearchData"
+            					items="{
+            						path: 'sc>/'
+            					}">
+						<c:Item key="{sc>SCHEMA}" text="{sc>SCHEMA}" />
+					</Select>
+					<Select id="selectStatus" text = "Filter" selectedKey="ALL" change="onSearchData">
+						<items>
+							<c:Item text="All" key="ALL"/>
+							<c:Item text="Match" key="YES"/>
+							<c:Item text="No Match" key="NO"/>
+						</items>
+					</Select>
+					<SearchField id="inputSearch" placeholder="Search" value="" search="onSearchData" width="10rem"/>
+					<Button icon="sap-icon://download" 
+    								id="btnDownloadVC" 
+    								press="onDownloadVC"	
+    								tooltip="Take Backup of Virtual Columns in system"/>
+				</content>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<VBox>
+				<Table growing="true" growingThreshold="15" id="tableVC"
+			            items="{path:'vc>/'}" mode="SingleSelectMaster" 
+			            selectionChange="onRowSelect"
+			                >
+					<columns>
+						<Column demandPopin="true" width="15rem">
+							<Text text="VC(Backup)"/>
+						</Column>
+						<Column demandPopin="true" width="15rem">
+							<Text text="VC(System)"/>
+						</Column>
+						<Column demandPopin="true" width="4rem">
+							<Text text="Status"/>
+						</Column>
+						<Column demandPopin="true">
+							<Text text="Message"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Navigation">
+							<ObjectIdentifier title="{vc>COLUMN_NAME_BACKUP}" text="{vc>SCHEMA_NAME_BACKUP}.{vc>TABLE_NAME_BACKUP}"/>
+							<ObjectIdentifier title="{vc>COLUMN_NAME_SYSTEM}" text="{vc>SCHEMA_NAME_SYSTEM}.{vc>TABLE_NAME_SYSTEM}"/>
+							<c:Icon 
+								        src = "sap-icon://status-completed"
+								        color="{
+					                    path:'vc>STATUS',
+					                    formatter: '.formatStatusIconColor'
+					            }"/>
+							<Text text="{vc>MESSAGE}"/>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

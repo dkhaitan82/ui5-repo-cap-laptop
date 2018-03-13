@@ -1,0 +1,64 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog
+      id="userDialog"
+      title="User Detail">
+		<VBox class="sapUiSmallMargin">
+			<f:SimpleForm id="userForm"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="4"
+			labelSpanL="3"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="4"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+				<f:content>
+					<Label text="Job Name" />
+					<Input id="inputUserJobName" value="{app>/data/job/JOB_NAME}" maxLength="80" enabled="false"/>
+					<Label text="Step Name" />
+					<Input id="inputUserStepName" value="{app>/data/job/STEP_NAME}" maxLength="80" enabled="false"></Input>
+					<Label text="User Email ID" />
+					<Input id="inputUserMail" value="{app>/data/job/user/USER_EMAIL}" maxLength="255" enabled="{app>/data/email_field_active}"
+				valueState="{app>/data/user_email_value_state}" valueStateText="Burberry Email ID must be used"></Input>
+					<Label text="User Name" />
+					<Input id="inputUserName" value="{app>/data/job/user/USER_NAME}" maxLength="255"
+				valueState="{app>/data/user_name_value_state}" valueStateText="Minimum 2 character name required"></Input>
+					<Label text="Alert on Success" />
+					<Select id="inputUserSuccessAlert" text = "Hello" selectedKey="{app>/data/job/user/SUCCESS_ALERT}">
+						<items>
+							<core:Item text="Active" key="X"/>
+							<core:Item text="Inactive" key=""/>
+						</items>
+					</Select>
+					<Label text="Alert on Failure" />
+					<Select id="inputUserFailureAlert" text = "Hello" selectedKey="{app>/data/job/user/FAILURE_ALERT}">
+						<items>
+							<core:Item text="Active" key="X"/>
+							<core:Item text="Inactive" key=""/>
+						</items>
+					</Select>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+		<beginButton>
+			<Button
+            text="Submit"
+            press="onUserSubmitDialog"/>
+		</beginButton>
+		<endButton>
+			<Button
+            text="Cancel"
+            press="onUserCancelDialog"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,86 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core"
+	controllerName="burberry.hana.util.controller.BeforeImageLog"
+	xmlns="sap.m">
+	<Page id="pageBeforeImage" title="Before Images">
+		<content>
+			<Table growing="true" growingThreshold="10" id="tableBeforeImage"
+			            items="{path:'bi>/results'}"
+			            mode="SingleSelectMaster"
+			            selectionChange="onBeforeImageSelect"
+			                >
+				<headerToolbar>
+					<Toolbar  design="Transparent">
+						<content>
+							<Button icon="{i18n>BeforeImageLog.button.upload.icon}" 
+    								id="btnUploadBeforeImage" 
+    								press="onUploadBeforeImage"	
+    								tooltip="{i18n>BeforeImageLog.button.upload.tooltip}"/>
+    						<Title id="statusTitle" text="" />
+    						<ToolbarSpacer/>
+							<SearchField placeholder="{i18n>BeforeImageLog.search.placeholder}"	value="" search="onSearch" width="20rem"/>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column demandPopin="true" width="20rem">
+						<Text text="{i18n>BeforeImageLog.table.column1}"/>
+					</Column>
+					<Column demandPopin="true" width="4rem">
+						<Text text="{i18n>BeforeImageLog.table.column2}"/>
+					</Column>
+					<Column demandPopin="true" width="4rem">
+						<Text text="{i18n>BeforeImageLog.table.column3}"/>
+					</Column>
+					<Column demandPopin="true" width="4rem">
+						<Text text="{i18n>BeforeImageLog.table.column4}"/>
+					</Column>
+					<Column demandPopin="true" width="8rem">
+						<Text text="{i18n>BeforeImageLog.table.column5}"/>
+					</Column>
+					<Column demandPopin="true">
+						<Text text="{i18n>BeforeImageLog.table.column6}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+						<cells>
+						    <ObjectIdentifier title="{bi>BUSINESS_AREA}:{bi>TEST_CASE}" 
+							        text="{path:'bi>TEST_CASE_DESCRIPTION',formatter:'.formatNote'}" tooltip="{bi>TEST_CASE_DESCRIPTION}"/>
+							
+						</cells>
+						<cells>
+							<c:Icon 
+								src = "{
+					        path:'bi>EXEC_STATUS',
+					        formatter: '.formatExecStatusIcon'
+					    }"
+								color="{
+					        path:'bi>EXEC_STATUS',
+					        formatter: '.formatExecStatusIconColor'
+					    }"/>
+						</cells>
+						<cells>
+							<c:Icon 
+								src = "sap-icon://status-completed"
+								color="{
+					        parts:['bi>RET_CODE','bi>MESSAGE'],
+					        formatter: '.formatReturnCodeIconColor'
+					            }"/>
+						</cells>
+						<cells>
+							<Text text="{bi>RECORD_COUNT}"/>
+						</cells>
+						<cells>
+							<Text text="{path:'bi>RUN_TIME',formatter: '.formatRumTime' }"/>
+						</cells>
+						<cells>
+							<Text text="{bi>MESSAGE}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>

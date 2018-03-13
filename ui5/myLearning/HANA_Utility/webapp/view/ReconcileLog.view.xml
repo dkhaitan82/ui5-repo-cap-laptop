@@ -1,0 +1,84 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core"
+	controllerName="burberry.hana.util.controller.ReconcileLog"
+	xmlns="sap.m">
+	<Page id="pageReconcile" title="Reconcile">
+		<VBox>
+			<Table growing="true" growingThreshold="10" id="tableReconcile"
+			items="{path:'rec>/results'}"
+			>
+				<headerToolbar>
+					<Toolbar design="Transparent">
+						<content>
+							<Button icon="sap-icon://refresh" id="btnResetAll" press="onLoadPage"	tooltip="Load Recon"/>
+							<ToolbarSpacer/>
+							<SearchField id="inputSearch" placeholder="Search"	value="" search="onSearchData" width="20rem"/>
+							<Select id="selectStatusRecon" text = "Filter" selectedKey="ALL" change="onSearchData">
+    					        <items>
+    						        <c:Item text="All" key="ALL"/>
+    						        <c:Item text="Matching" key="YES"/>
+    						        <c:Item text="Not Matching" key="NO"/>
+    					        </items>
+		                    </Select>
+		                    <Select id="selectStatusPerformance" text = "Filter" selectedKey="ALL" change="onSearchData">
+    					        <items>
+    						        <c:Item text="All" key="ALL"/>
+    						        <c:Item text="Improved" key="YES"/>
+    						        <c:Item text="Degraded" key="NO"/>
+    					        </items>
+		                    </Select>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column demandPopin="true">
+						<Text text="Test Name"/>
+					</Column>
+					<Column demandPopin="true" width="6rem">
+						<Text text="Before Runtime"/>
+					</Column>
+					<Column demandPopin="true" width="6rem">
+						<Text text="After Runtime"/>
+					</Column>
+					<Column demandPopin="true" width="4rem">
+						<Text text="Data Reconcile"/>
+					</Column>
+					<Column demandPopin="true" width="4rem">
+						<Text text="Performance"/>
+					</Column>
+					<Column width="4rem">
+						<Text text="Download"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{rec>BUSINESS_AREA}:{rec>TEST_CASE}" 
+							        text="{path:'rec>TEST_CASE_DESCRIPTION',formatter:'.formatNote'}" tooltip="{rec>TEST_CASE_DESCRIPTION}"/>
+						</cells>
+						<cells>
+							<Text text="{path:'rec>BEFORE_RUN_TIME',formatter: '.formatRumTime' }"/>
+						</cells>
+						<cells>
+							<Text text="{path:'rec>AFTER_RUN_TIME',formatter: '.formatRumTime' }"/>
+						</cells>
+						<cells>
+							<c:Icon 
+								src = "sap-icon://status-completed"
+								color="{path:'rec>DATA_RECONCILE', formatter: '.formatReturnCodeIconColor'}"/>
+						</cells>
+						<cells>
+							<c:Icon 
+								src = "{path:'rec>RUN_TIME_DIFFERENCE', formatter: '.formatPerformanceIcon'}"
+								color="{path:'rec>RUN_TIME_DIFFERENCE', formatter: '.formatPerformanceColor'}"/>
+						</cells>
+						<cells>
+							<Button icon="sap-icon://download" press="onDownload"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+	</Page>
+</mvc:View>

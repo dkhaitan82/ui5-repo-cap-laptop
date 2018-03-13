@@ -1,0 +1,8 @@
+service  { 
+   "_SYS_BIC"."applications.utility.model.views/CA_DIM_VIEW_LIST"
+   as "Views"
+   key("SCHEMA_NAME","VIEW_NAME")
+   create forbidden
+   update forbidden
+   delete forbidden;
+}

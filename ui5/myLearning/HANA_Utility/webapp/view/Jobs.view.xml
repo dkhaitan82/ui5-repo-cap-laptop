@@ -1,0 +1,131 @@
+<mvc:View
+	controllerName="burberry.hana.util.controller.Jobs"
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+	displayBlock="true"
+    height="100%"
+	>
+		<m:Page title="Job Alert Configuration" showNavButton="true" navButtonPress="onNavBack" class="masterPageStyle">
+			<m:content>
+				<Table
+				id="jobTable"
+				selectionMode="Single"
+				visibleRowCount="7"
+				rowSelectionChange="onItemSelected">
+					<toolbar>
+						<m:Toolbar>
+							<m:Title id="title" text="Job List"></m:Title>
+							<m:ToolbarSpacer/>
+							<m:SearchField placeholder="Search Job and Steps"	value="" search="filterJobs" width="20rem"/>
+							<m:Button text="New" id="newJobButton" press="onNewJob" icon="sap-icon://create"/>
+							<m:Button text="Edit" id="editJobButton" press="onEditJob" icon="sap-icon://edit"/>
+							<m:Button text="Delete" id="deleteJobButton" press="onDeleteJob" icon="sap-icon://delete"/>
+						</m:Toolbar>
+					</toolbar>
+					<columns>
+						<Column sortProperty="JOB_NAME" filterProperty="JOB_NAME">
+							<m:Label text="Job Name" />
+							<template>
+								<m:Text text="{jobs>JOB_NAME}" wrapping="false"/>
+							</template>
+						</Column>
+						<Column sortProperty="STEP_NAME" filterProperty="STEP_NAME">
+							<m:Label text="Step Name" />
+							<template>
+								<m:Text text="{jobs>STEP_NAME}" wrapping="false"/>
+							</template>
+						</Column>
+						<Column>
+							<m:Label text="Active" />
+							<template>
+								<m:CheckBox enabled="false" selected="{
+								path: 'jobs>MAIL_INACTIVE',
+								type: 'sap.ui.model.type.Boolean',
+								formatter:'.formatInactiveFlag'
+							    
+							}" select="testSelectCheckBox"/>
+							</template>
+						</Column>
+						<Column>
+							<m:Label text="Success Alert" />
+							<template>
+								<m:CheckBox enabled="false" selected="{
+								path: 'jobs>SUCCESS_ALERT',
+								type: 'sap.ui.model.type.Boolean',
+								formatter:'.formatActiveFlag'
+							    
+							}"/>
+							</template>
+						</Column>
+						<Column>
+							<m:Label text="Failure Alert" />
+							<template>
+								<m:CheckBox enabled="false" selected="{
+								path: 'jobs>FAILURE_ALERT',
+								type: 'sap.ui.model.type.Boolean',
+								formatter:'.formatActiveFlag'
+							    
+							}"/>
+							</template>
+						</Column>
+					</columns>
+				</Table>
+				<Table
+				id="userTable"
+				selectionMode="Single"
+				visibleRowCount="7"
+				rowSelectionChange="onUserItemSelected">
+					<toolbar>
+						<m:Toolbar>
+							<m:Title id="title1" text="User List for Job:{app>/data/job/JOB_NAME} and Step:{app>/data/job/STEP_NAME}"></m:Title>
+							<m:ToolbarSpacer/>
+							<m:SearchField placeholder="Search Email and Users"	value="" search="filterUsers" width="20rem"/>
+							<m:Button text="Show All Users" id="showAllUsersButton" press="onShowAllUsers" icon="sap-icon://address-book" visible="false"/>
+							<m:Button text="New" id="newUserButton" press="onNewUser" icon="sap-icon://create"/>
+							<m:Button text="Edit" id="editUserButton" press="onEditUser" icon="sap-icon://edit"/>
+							<m:Button text="Delete" id="deleteUserButton" press="onDeleteUser" icon="sap-icon://employee-rejections"/>
+						</m:Toolbar>
+					</toolbar>
+					<columns>
+						<Column sortProperty="USER_EMAIL" filterProperty="USER_EMAIL">
+							<m:Label text="User Email" />
+							<template>
+								<m:Text text="{jobs>USER_EMAIL}" wrapping="false"/>
+							</template>
+						</Column>
+						<Column sortProperty="USER_NAME" filterProperty="USER_NAME">
+							<m:Label text="User Name" />
+							<template>
+								<m:Text text="{jobs>USER_NAME}" wrapping="false"/>
+							</template>
+						</Column>
+						<Column sortProperty="SUCCESS_ALERT">
+							<m:Label text="Success Alert" />
+							<template>
+								<m:CheckBox enabled="false" selected="{
+								path: 'jobs>SUCCESS_ALERT',
+								type: 'sap.ui.model.type.Boolean',
+								formatter:'.formatActiveFlag'
+							    
+							}"/>
+							</template>
+						</Column>
+						<Column sortProperty="FAILURE_ALERT">
+							<m:Label text="Failure Alert" />
+							<template>
+								<m:CheckBox enabled="false" selected="{
+								path: 'jobs>FAILURE_ALERT',
+								type: 'sap.ui.model.type.Boolean',
+								formatter:'.formatActiveFlag'
+							    
+							}"/>
+							</template>
+						</Column>
+					</columns>
+				</Table>
+			</m:content>
+		</m:Page>
+</mvc:View>

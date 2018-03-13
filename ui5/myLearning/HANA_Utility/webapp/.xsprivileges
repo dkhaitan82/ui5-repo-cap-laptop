@@ -1,0 +1,5 @@
+{
+	"privileges" : [
+		{ "name" : "Utilities", "description" : "Tool Privilege" }
+	]
+}

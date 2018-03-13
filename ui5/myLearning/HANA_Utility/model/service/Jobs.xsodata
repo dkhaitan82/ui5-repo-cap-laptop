@@ -1,0 +1,11 @@
+service  { 
+    "MASH"."ETL.common::JOBS"
+	 as "Jobs"
+	 navigates ("Jobs_Users" as "toUsers");
+	 
+	 "MASH"."ETL.common::USERS"
+     as "Users";
+     
+     association "Jobs_Users" principal "Jobs"("JOB_NAME","STEP_NAME") multiplicity "1" dependent "Users"("JOB_NAME","STEP_NAME") multiplicity "*"; 
+     
+}  

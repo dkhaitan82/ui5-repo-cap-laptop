@@ -1,0 +1,73 @@
+<mvc:View
+        controllerName="burberry.hana.util.controller.CheckCalcViews"
+        xmlns="sap.ui.table"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:m="sap.m"
+        xmlns:u="sap.ui.unified"
+        xmlns:core="sap.ui.core"
+        xmlns:l="sap.ui.layout"
+        height="100%">
+    <m:Page id="pageCheckCalcViews" title="{i18n>CheckCalcViews.page.title}">
+        <m:content>
+            <TreeTable
+                    id="PackageTree"
+                    rows="{path:'pa>/', parameters: {arrayNames:['nodes']}}"
+                    selectionMode="MultiToggle"
+                    enableSelectAll="false"
+                    ariaLabelledBy="title"
+                    visibleRowCount="25"
+                    enableBusyIndicator="true"
+                    showNoData="false">
+                <toolbar>
+                    <m:Toolbar design="Transparent">
+						<m:Button icon="{i18n>CheckCalcViews.button.execute.icon}" 
+						          id="btnExecuteTestCase" press="onExecuteViews"	
+						          tooltip="{i18n>CheckCalcViews.button.execute.tooltip}"/>
+						<m:Button icon="{i18n>CheckCalcViews.button.refresh.icon}" 
+						          id="btnResetAll" 
+						          press="onResetAll"	
+						          tooltip="{i18n>CheckCalcViews.button.refresh.tooltip}"/>
+                    </m:Toolbar>
+                </toolbar>
+                <columns>
+                    <Column>
+                        <m:Label text="{i18n>CheckCalcViews.table.column1.label}"/>
+                        <template>
+                            <m:Text text="{pa>folder}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column width="4rem">
+                        <m:Label text="{i18n>CheckCalcViews.table.column2.label}"/>
+                        <template>
+                            <m:Text text="{pa>view_count}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column width="4rem">
+                        <m:Label text="{i18n>CheckCalcViews.table.column3.label}"/>
+                        <template>
+                            <l:HorizontalLayout>
+                                <core:Icon src="sap-icon://status-completed" color="{path:'pa>success_count',formatter: '.formatSuccessColor'}"/>
+                                <m:Text text="{path:'pa>success_count',formatter:'.formatCount'}" wrapping="false" />
+                            </l:HorizontalLayout>
+                        </template>
+                    </Column>
+                    <Column width="4rem">
+                        <m:Label text="{i18n>CheckCalcViews.table.column4.label}"/>
+                        <template>
+                            <l:HorizontalLayout>
+                                <core:Icon src="sap-icon://status-completed" color="{path:'pa>error_count',formatter: '.formatErrorColor'}"/>
+                                <m:Text text="{path:'pa>error_count',formatter:'.formatCount'}" wrapping="false" />
+                            </l:HorizontalLayout>
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label text="{i18n>CheckCalcViews.table.column5.label}"/>
+                        <template>
+                            <m:Text text="{pa>msg}" wrapping="false" tooltip="{pa>msg}"/>
+                        </template>
+                    </Column>
+                </columns>
+            </TreeTable>
+        </m:content>
+    </m:Page>
+</mvc:View>

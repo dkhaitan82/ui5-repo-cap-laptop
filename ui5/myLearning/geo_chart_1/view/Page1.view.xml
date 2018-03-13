@@ -1,0 +1,29 @@
+<View controllerName="dk.sample.controller.Page1" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:cust="dk.sample.control">
+	<Page id="page1" title="Page1" navButtonPress="onNavBack" showNavButton="true">
+		<subHeader>
+			<Toolbar design="Transparent">
+				<content>
+					<Button text="loadChart" press="loadChart" visible="true"/>
+					<ComboBox id="selectStore" showSecondaryValues="true" items="{path: 'sales>/Sales'}" change="onChangeData">
+						<core:ListItem key="{sales>PHY_STORE_NO}" text="{sales>STORE_NAME}" additionalText= "{sales>PHY_STORE_NO}"/>
+					</ComboBox>
+					<ComboBox id="selectPeriod" items="{path: 'sales>/Sales'}" change="onChangeData">
+						<core:ListItem key="{sales>CA_FISCPER_Z5}" text="{sales>CA_FISCPER_Z5}"/>
+					</ComboBox>
+					<Label text="KPI" labelFor="selectKPI"/>
+					<Select id="selectKPI" selectedKey = "AMOUNT" change="onChangeData">
+						<core:ListItem key="AMOUNT" text="Sales Amount"/>
+						<core:ListItem key="COUNT" text="Transaction Count"/>
+					</Select>
+					<ToolbarSpacer />
+				</content>
+			</Toolbar>
+		</subHeader>
+		<content>
+			
+				<cust:CustomCanvas id="chart_canvas"/>
+		
+		</content>
+	</Page>
+</View>

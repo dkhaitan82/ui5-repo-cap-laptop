@@ -1,0 +1,84 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core"
+	controllerName="burberry.hana.util.controller.AfterImageLog"
+	xmlns="sap.m">
+	<Page id="pageAfterImage" title="After Images">
+		<content>
+			<Table growing="true" growingThreshold="10" id="tableAfterImage"
+			            items="{path:'ai>/results'}"
+			            mode="SingleSelectMaster"
+			            selectionChange="onAfterImageSelect"
+			                >
+				<headerToolbar>
+					<Toolbar  design="Transparent">
+						<content>
+							<Button icon="{i18n>AfterImageLog.button.upload.icon}" 
+								id="btnUploadAfterImage" press="onUploadAfterImage"	tooltip="{i18n>AfterImageLog.button.upload.tooltip}"/>
+							<Title id="statusTitle" text="" />
+							<ToolbarSpacer/>
+							<SearchField placeholder="{i18n>AfterImageLog.search.placeholder}"	value="" search="onSearch" width="20rem"/>
+							
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column demandPopin="true" width="20rem">
+						<Text text="{i18n>AfterImageLog.table.column1}"/>
+					</Column>
+					<Column demandPopin="true" width="4rem">
+						<Text text="{i18n>AfterImageLog.table.column2}"/>
+					</Column>
+					<Column demandPopin="true" width="4rem">
+						<Text text="{i18n>AfterImageLog.table.column3}"/>
+					</Column>
+					<Column demandPopin="true" width="4rem">
+						<Text text="{i18n>AfterImageLog.table.column4}"/>
+					</Column>
+					<Column demandPopin="true" width="8rem">
+						<Text text="{i18n>AfterImageLog.table.column5}"/>
+					</Column>
+					<Column demandPopin="true">
+						<Text text="{i18n>AfterImageLog.table.column6}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+						<cells>
+							<ObjectIdentifier title="{ai>BUSINESS_AREA}:{ai>TEST_CASE}" 
+							        text="{path:'ai>TEST_CASE_DESCRIPTION',formatter:'.formatNote'}" tooltip="{ai>TEST_CASE_DESCRIPTION}"/>
+						</cells>
+						<cells>
+							<c:Icon 
+								src = "{
+					        path:'ai>EXEC_STATUS',
+					        formatter: '.formatExecStatusIcon'
+					    }"
+								color="{
+					        path:'ai>EXEC_STATUS',
+					        formatter: '.formatExecStatusIconColor'
+					    }"/>
+						</cells>
+						<cells>
+							<c:Icon 
+								src = "sap-icon://status-completed"
+								color="{
+					        parts:['ai>RET_CODE','ai>MESSAGE'],
+					        formatter: '.formatReturnCodeIconColor'
+					            }"/>
+						</cells>
+						<cells>
+							<Text text="{ai>RECORD_COUNT}"/>
+						</cells>
+						<cells>
+							<Text text="{path:'ai>RUN_TIME',formatter: '.formatRumTime' }"/>
+						</cells>
+						<cells>
+							<Text text="{ai>MESSAGE}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>

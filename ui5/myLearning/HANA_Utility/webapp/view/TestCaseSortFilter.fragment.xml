@@ -1,0 +1,90 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="onSortFilterConfirm"
+		resetFilters="onSortFilterReset">
+		<sortItems multiSelect="true">
+			<ViewSettingsItem text="Business Area" key="BUSINESS_AREA" selected="true" />
+			<ViewSettingsItem text="Test Case" key="TEST_CASE" />
+			<ViewSettingsItem text="Execution Type" key="EXEC_TYPE" />
+			<ViewSettingsItem text="Author" key="AUTHOR" />
+			<ViewSettingsItem text="Changed On" key="UPDATED_ON" />
+			<ViewSettingsItem text="Is Active" key="IS_ACTIVE" />
+		</sortItems>
+		<groupItems>
+			<ViewSettingsItem text="Business Area" key="BUSINESS_AREA" />
+			<ViewSettingsItem text="Author" key="AUTHOR" />
+			<ViewSettingsItem text="Active" key="IS_ACTIVE" />
+		</groupItems>
+		<filterItems>
+			<ViewSettingsCustomItem text="Business Area" key="BUSINESS_AREA">
+			    <customControl>
+			        <Input id="filter_BUSINESS_AREA" value=""/>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Test Case" key="TEST_CASE">
+			    <customControl>
+			        <Input id="filter_TEST_CASE" value=""/>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Test Case Note" key="TEST_CASE_DESCRIPTION">
+			    <customControl>
+			        <Input id="filter_TEST_CASE_DESCRIPTION" value=""/>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Execution Type" key="EXEC_TYPE">
+			    <customControl>
+			        <Input id="filter_EXEC_TYPE" value=""/>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Author" key="AUTHOR">
+			    <customControl>
+			        <Input id="filter_AUTHOR" value=""/>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Update on(From)" key="UPDATED_ON_FROM">
+			    <customControl>
+			        <DatePicker id="filter_UPDATED_ON_FROM" value="" valueFormat="yyyy-MM-dd" displayFormat="long"/>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Update on(To)" key="UPDATED_ON_TO">
+			    <customControl>
+			        <DatePicker id="filter_UPDATED_ON_TO" value="" valueFormat="yyyy-MM-dd" displayFormat="long"/>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Executed on(From)" key="EXEC_FROM">
+			    <customControl>
+			        <DatePicker id="filter_EXEC_FROM" value="" valueFormat="yyyy-MM-dd" displayFormat="long"/>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Executed On(To)" key="EXEC_TO">
+			    <customControl>
+			        <DatePicker id="filter_EXEC_TO" value="" valueFormat="yyyy-MM-dd" displayFormat="long"/>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Valid" key="IS_VALID">
+			    <customControl>
+			        <Select id="filter_IS_VALID" selectedKey="">
+					<items>
+					    <core:Item text="None" key=""/>
+						<core:Item text="Valid" key="1"/>
+						<core:Item text="Invalid" key="0"/>
+					</items>
+				</Select>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		    <ViewSettingsCustomItem text="Active" key="IS_ACTIVE">
+			    <customControl>
+			        <Select id="filter_IS_ACTIVE" selectedKey="">
+					<items>
+					    <core:Item text="None" key=""/>
+						<core:Item text="Active" key="1"/>
+						<core:Item text="Inactive" key="0"/>
+					</items>
+				</Select>
+			    </customControl>
+		    </ViewSettingsCustomItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

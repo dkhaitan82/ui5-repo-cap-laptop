@@ -1,0 +1,43 @@
+<mvc:View
+    controllerName="burberry.hana.util.controller.TestCaseDefineItem"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page id="pageLogTestCase" title="Test Case Details" navButtonPress="onNavBack" showNavButton="true">
+		<VBox>
+			<Toolbar design="Transparent">
+				<Button icon="sap-icon://add" id="createTestCase" press="onCreateTestCase"	tooltip="Create Test Case" />
+				<Button icon="sap-icon://save" id="saveTestCase" press="onSaveTestCase" tooltip="Save Test Case"/>
+				<ToolbarSpacer />
+			</Toolbar>
+			<form:SimpleForm id="frmTestCase" layout="ResponsiveGridLayout">
+			    <Label labelFor="selectBusinessArea" text="Business Area"/>
+			    <Select
+			        id="selectBusinessArea"
+			        width="50%"
+					forceSelection="false"
+					visible="{ui>/SHOW_BUS_SELECT}"
+					selectedKey="{sug>/data/NAME}"
+					change="onChangeBusinessArea"
+					items="{
+						path: 'sug>/data'
+					}">
+					<core:Item key="{sug>NAME}" text="{sug>NAME}" />
+				</Select>
+				<Input id="ipCreatedOn" value="{tc>CREATED_ON}" visible="false"/>
+				<Input id="ipAuthor" value="{tc>AUTHOR}" visible="false"/>
+				<Label labelFor="ipBusinessArea" text="Business Area"/>
+				<Input id="ipBusinessArea" value="{tc>BUSINESS_AREA}" width="50%" maxLength="50" enabled="{ui>/ENABLE_BUS}" visible="{ui>/SHOW_BUS_INPUT}">
+				</Input>
+				<Label labelFor="ipTestCase" text="Test Case" />
+				<Input id="ipTestCase" value="{tc>TEST_CASE}" width="50%" maxLength="50" enabled="{ui>/ENABLE_TC}"/>
+				<Label labelFor="ipNote" text="Note" />
+				<TextArea id="ipNote" value="{tc>TEST_CASE_DESCRIPTION}" height="5em" width="100%"/>
+				<Label labelFor="ipSQL" text="SQL"/>
+				<TextArea id="ipSQL" value="{tc>SQL_CODE}" height="20em" width="100%"/>
+				
+			</form:SimpleForm>
+		</VBox>
+	</Page>
+</mvc:View>

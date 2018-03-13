@@ -1,0 +1,26 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" 
+				xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" 
+				xmlns="http://schemas.microsoft.com/ado/2008/09/edm" 
+				Namespace="development.DKHAITAN.UI5.google-map.service.CustSales">
+			<EntityType Name="SalesType">
+				<Key>
+					<PropertyRef Name="PHY_STORE_NO" />
+					<PropertyRef Name="COUNTRY" />
+					<PropertyRef Name="CA_FISCPER_Z5" />
+				</Key>
+				<Property Name="PHY_STORE_NO" Type="Edm.String" Nullable="false" MaxLength="4" />
+				<Property Name="COUNTRY" Type="Edm.String" Nullable="false" MaxLength="255" />
+				<Property Name="CA_FISCPER_Z4" Type="Edm.String" MaxLength="10" />
+				<Property Name="CA_FISCPER_Z5" Type="Edm.String" Nullable="false" MaxLength="10" />
+				<Property Name="STORE_NAME" Type="Edm.String" MaxLength="80" />
+				<Property Name="AMOUNT" Type="Edm.Decimal" Precision="13" Scale="3" />
+				<Property Name="CM_COUNT" Type="Edm.Int32" />
+			</EntityType>
+			<EntityContainer Name="CustSales" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="Sales" EntityType="development.DKHAITAN.UI5.google-map.service.CustSales.SalesType" />
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

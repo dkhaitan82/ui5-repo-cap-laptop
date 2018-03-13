@@ -1,0 +1,20 @@
+<mvc:View
+	controllerName="dk.sample.controller.Home"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:viz="sap.viz.ui5.controls"
+   	displayBlock="true"
+   	height="100%">
+		<Page title="Designed in Controller">
+			<content>
+				<Button text="Show Pie" press="onShowPie"/>
+				<Button text="Show Bar" press="onShowBar"/>
+				<Button text="Other Example with XML" press="onPage1"/>
+				<viz:VizFrame xmlns="sap.viz" id="idcolumn" width="100%"/>
+			</content>
+		</Page>
+</mvc:View>
+
+
+
+

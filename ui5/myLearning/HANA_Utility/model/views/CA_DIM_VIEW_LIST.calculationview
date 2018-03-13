@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CA_DIM_VIEW_LIST" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="CA_DIM_VIEW_LIST"/>
+  <metadata changedAt="2017-12-21 10:23:36.266" createdAt="2017-12-21 10:23:36.266"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="33"/>
+  <dataSources>
+    <DataSource id="VIEWS" type="DATA_BASE_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SYS" columnObjectName="VIEWS"/>
+    </DataSource>
+    <DataSource id="CS_VIEW_PARAMETERS" type="DATA_BASE_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SYS" columnObjectName="CS_VIEW_PARAMETERS"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHEMA_NAME"/>
+        <viewAttribute id="VIEW_NAME"/>
+        <viewAttribute id="VIEW_TYPE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#VIEWS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEMA_NAME" source="SCHEMA_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIEW_NAME" source="VIEW_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIEW_TYPE" source="VIEW_TYPE"/>
+      </input>
+      <filter>(&quot;SCHEMA_NAME&quot; = '_SYS_BIC') AND (&quot;VIEW_NAME&quot; &lt;> 'CATALOGUE_DATA_VIEW') AND &quot;VIEW_TYPE&quot; IN('CALC','JOIN','OLAP') AND (not (VIEW_NAME LIKE '%/dp/%'))</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHEMA_NAME">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="_SYS_BIC"/>
+        </viewAttribute>
+        <viewAttribute id="IS_MANDATORY">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="TRUE"/>
+        </viewAttribute>
+        <viewAttribute id="DEFAULT_VALUE">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value=""/>
+        </viewAttribute>
+        <viewAttribute id="OBJECT_NAME"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="AUTO_EXECUTION" expressionLanguage="COLUMN_ENGINE">
+          <formula>0</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#CS_VIEW_PARAMETERS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEMA_NAME" source="SCHEMA_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_MANDATORY" source="IS_MANDATORY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DEFAULT_VALUE" source="DEFAULT_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OBJECT_NAME" source="OBJECT_NAME"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="OBJECT_NAME"/>
+        <viewAttribute id="AUTO_EXECUTION"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="OBJECT_NAME" source="OBJECT_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AUTO_EXECUTION" source="AUTO_EXECUTION"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHEMA_NAME"/>
+        <viewAttribute id="VIEW_NAME"/>
+        <viewAttribute id="AUTO_EXECUTION"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="AUTO_EXEC" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(isnull(&quot;AUTO_EXECUTION&quot;),1,0)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEMA_NAME" source="SCHEMA_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIEW_NAME" source="VIEW_NAME"/>
+      </input>
+      <input node="#Aggregation_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="AUTO_EXECUTION" source="AUTO_EXECUTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIEW_NAME" source="OBJECT_NAME"/>
+      </input>
+      <joinAttribute name="VIEW_NAME"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions defaultDescription="CA_DIM_VIEW_LIST"/>
+    <attributes>
+      <attribute id="AUTO_EXEC" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AUTO_EXEC"/>
+        <keyMapping columnObjectName="Join_1" columnName="AUTO_EXEC"/>
+      </attribute>
+      <attribute id="SCHEMA_NAME" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Schema name"/>
+        <keyMapping columnObjectName="Join_1" columnName="SCHEMA_NAME"/>
+      </attribute>
+      <attribute id="VIEW_NAME" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="View name"/>
+        <keyMapping columnObjectName="Join_1" columnName="VIEW_NAME"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="339"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -1,0 +1,12 @@
+<View controllerName="dk.sample.controller.Home" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:cust="dk.sample.control" displayBlock="true" height="100%">
+	<Page title="D3 Basic Shapes,Data,Event Handling">
+		<subHeader>
+			<Toolbar design="Transparent">
+				<content>
+					<Button text="Page1" press="onPage1" />
+				</content>
+			</Toolbar>
+		</subHeader>
+		<VBox id="d3"/>
+	</Page>
+</View>

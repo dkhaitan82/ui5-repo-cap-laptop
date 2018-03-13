@@ -1,0 +1,83 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	controllerName="burberry.hana.util.controller.ExecuteTestCase"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:fb="sap.ui.comp.filterbar">
+	<Page id="pageExecuteTestCase" title="Execute Test Cases">
+		<subHeader>
+			<Toolbar design="Transparent">
+				<content>
+					<Button icon="sap-icon://begin" id="btnExecuteTestCase" press="onExecuteTestCase"	tooltip="Start"/>
+					<Button icon="sap-icon://download" id="btnDownloadResults" press="onDownloadResults"	tooltip="Download"/>
+					<Button icon="sap-icon://refresh" id="btnResetAll" press="onResetAll"	tooltip="Reset Execution"/>
+				</content>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<VBox>
+				<Table growing="true" growingThreshold="10" id="tableTestCase"
+			items="{path:'tce>/results'}"
+			>
+					<headerToolbar></headerToolbar>
+					<columns>
+						<Column demandPopin="true" width="20rem">
+							<Text text="Test Name"/>
+						</Column>
+						<Column demandPopin="true">
+							<Text text="Execution Status"/>
+						</Column>
+						<Column demandPopin="true">
+							<Text text="Return Code"/>
+						</Column>
+						<Column demandPopin="true">
+							<Text text="Record Count"/>
+						</Column>
+						<Column demandPopin="true">
+							<Text text="Run Time"/>
+						</Column>
+						<Column demandPopin="true">
+							<Text text="Message"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier title="{tce>BUSINESS_AREA}:{tce>TEST_CASE}" 
+							        text="{path:'tce>TEST_CASE_DESCRIPTION',formatter:'.formatNote'}" tooltip="{tce>TEST_CASE_DESCRIPTION}"/>
+							</cells>
+							<cells>
+								<c:Icon 
+								src = "{
+					        path:'tce>EXEC_STATUS',
+					        formatter: '.formatExecStatusIcon'
+					    }"
+								color="{
+					        path:'tce>EXEC_STATUS',
+					        formatter: '.formatExecStatusIconColor'
+					    }"/>
+							</cells>
+							<cells>
+								<c:Icon 
+								src = "sap-icon://status-completed"
+								color="{
+					        parts:['tce>RET_CODE','tce>MESSAGE'],
+					        formatter: '.formatReturnCodeIconColor'
+					            }"/>
+							</cells>
+							<cells>
+								<Text text="{tce>RECORD_COUNT}"/>
+							</cells>
+							<cells>
+								<Text text="{path:'tce>RUN_TIME',formatter: '.formatRumTime' }"/>
+							</cells>
+							<cells>
+								<Text text="{tce>MESSAGE}" tooltip="{tce>MESSAGE}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

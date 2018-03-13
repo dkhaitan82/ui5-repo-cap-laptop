@@ -1,0 +1,105 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" 
+   xmlns:f="sap.ui.layout.form">
+   <Dialog
+      id="jobDialog"
+      title="Job Detail">
+      
+      <VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="jobForm"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="4"
+			labelSpanL="3"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="4"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="Job Name" />
+				<Input id="inputJobName"  maxLength="80" enabled="{app>/data/job_field_active}" 
+				valueState="{app>/data/job_value_state}"
+				valueStateText="Job must not be empty. Minimum 3 characters."
+				value="{
+				    path:'app>/data/job/JOB_NAME',
+				    type:'sap.ui.model.type.String',
+				    constraints : {
+						minLength: 3,
+						maxLength: 255
+					}
+				}"
+				/>
+				<Label text="Step Name" />
+				<Input id="inputStepName" maxLength="80" enabled="{app>/data/step_field_active}" valueState="{app>/data/step_value_state}"
+				valueStateText="Step must not be empty. Minimum 3 characters."
+				value="{
+				    path:'app>/data/job/STEP_NAME',
+				    type:'sap.ui.model.type.String',
+				    constraints : {
+						minLength: 3,
+						maxLength: 255
+					}
+				}"
+				
+				></Input>
+				<Label text="Success Subject" />
+				<Input id="inputSubjectSuccess" value="{app>/data/job/SUBJECT_SUCCESS}" maxLength="255" 
+				valueState="{app>/data/subject_success_value_state}"
+				valueStateText="Subject must not be empty. Minimum 3 characters."
+				></Input>
+				<Label text="Failure Subject" />
+				<Input id="inputSubjectFailure" value="{app>/data/job/SUBJECT_FAILURE}" maxLength="255"
+				valueState="{app>/data/subject_failure_value_state}"
+				valueStateText="Subject must not be empty. Minimum 3 characters."
+				></Input>
+				<Label text="Success Custom Note" />
+				<TextArea id="inputBodyNoteSuccess" value="{app>/data/job/BODY_NOTE_SUCCESS}" showExceededText="true" maxLength="255"/>
+				<Label text="Failure Custom Note" />
+				<TextArea id="inputBodyNoteFailure" value="{app>/data/job/BODY_NOTE_FAILURE}" showExceededText="true" maxLength="255"/>
+				<Label text="Job Level Switch" />
+				<Select id="inputMailInactive" text = "Hello" selectedKey="{app>/data/job/MAIL_INACTIVE}">
+					<items>
+						<core:Item text="Alert Active" key=""/>
+						<core:Item text="Alert Inactive" key="X"/>
+					</items>
+				</Select>
+                <Label text="Alert on Success" />
+				<Select id="inputSuccessAlert" text = "Hello" selectedKey="{app>/data/job/SUCCESS_ALERT}">
+					<items>
+						<core:Item text="Active" key="X"/>
+						<core:Item text="Inactive" key=""/>
+					</items>
+				</Select>
+				<Label text="Alert on Failure" />
+				<Select id="inputFailureAlert" text = "Hello" selectedKey="{app>/data/job/FAILURE_ALERT}">
+					<items>
+						<core:Item text="Active" key="X"/>
+						<core:Item text="Inactive" key=""/>
+					</items>
+				</Select>
+			</f:content>
+		</f:SimpleForm>
+
+	</VBox>
+	  <beginButton>
+		        <Button
+            text="Submit"
+            press="onJobSubmitDialog"/>
+
+      </beginButton>
+      <endButton>
+         <Button
+            text="Cancel"
+            press="onJobCancelDialog"/>
+
+      </endButton>
+   </Dialog>
+</core:FragmentDefinition>

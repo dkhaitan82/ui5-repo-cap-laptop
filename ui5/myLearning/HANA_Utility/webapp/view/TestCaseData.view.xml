@@ -1,0 +1,38 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core"
+	controllerName="burberry.hana.util.controller.TestCaseData"
+	xmlns="sap.m">
+	<Page id="pageTestCaseData" title="{app>/data/test/tc_data_page_title}"
+	navButtonPress="onNavBack" showNavButton="true">
+		<content>
+		<Table growing="true" growingThreshold="10" id="tableTestCaseData" visible="true">
+				<headerToolbar>
+					<Toolbar>
+						<content>
+							<Button icon="{i18n>AfterImageLog.chooseColumn.icon}" press="onChooseColumnsAfterImage" tooltip="{i18n>AfterImageLog.chooseColumn.tooltip}"/>
+							<Button icon="{i18n>AfterImageLog.excel.icon}" press="onDownloadExcel" tooltip="{i18n>AfterImageLog.excel.tooltip}"/>
+						</content>
+						<dependents>
+							<TableSelectDialog id="ColumnsDialog" title="{i18n>AfterImageLog.chooseColumn.dialog.title}" confirm="onChooseColumns" cancel="onColumnDialogClose"
+                                multiSelect="true"
+                                search="onColumnSearch"
+                                contentWidth="20%">
+								<ColumnListItem></ColumnListItem>
+								<columns>
+									<Column width="12em">
+										<header>
+											<Text text="Columns" />
+										</header>
+									</Column>
+								</columns>
+							</TableSelectDialog>
+						</dependents>
+					</Toolbar>
+				</headerToolbar>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>
+		
+		

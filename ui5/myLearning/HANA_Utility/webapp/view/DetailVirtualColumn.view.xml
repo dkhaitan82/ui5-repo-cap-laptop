@@ -1,0 +1,57 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	controllerName="burberry.hana.util.controller.DetailVirtualColumn"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form">
+	<Page id="pageDetailVC" title="Virtual Column Details" navButtonPress="onNavBack" showNavButton="true">
+		<content>
+			<VBox>
+				<form:SimpleForm layout="ResponsiveGridLayout">
+					<form:SimpleForm backgroundDesign="Transparent" editable="false" labelSpanM="4"
+						layout="ResponsiveGridLayout">
+						<form:title>
+							<c:Title text="Backup"/>
+						</form:title>
+						<Label id="lblSchemaBackup" text="Schema"/>
+						<Text text="{SCHEMA_NAME_BACKUP}" />
+						<Label id="lblTableBackup" text="Table" />
+						<Text text="{TABLE_NAME_BACKUP}" />
+						<Label id="lblColumnBackup" text="Column Name" />
+						<Text text="{COLUMN_NAME_BACKUP}" />
+						<Label id="lblDataTypeBackup" text="Data Type" />
+						<Text text="{DATA_TYPE_NAME_BACKUP}" />
+						<Label id="lblLengthBackup" text="Length" />
+						<Text text="{LENGTH_BACKUP}" />
+						<Label id="lblScaleBackup" text="Scale" />
+						<Text text="{SCALE_BACKUP}" />
+						<Label id="lblGenBackup" text="Generated Always" />
+						<Text text="{GENERATED_ALWAYS_AS_BACKUP}"/>
+					</form:SimpleForm>
+					<form:SimpleForm backgroundDesign="Transparent" labelSpanM="4"
+						layout="ResponsiveGridLayout">
+						<form:title>
+							<c:Title text="System"/>
+						</form:title>
+						<Label id="lblSchemaSystem" text="Schema" />
+						<Text text="{SCHEMA_NAME_SYSTEM}" />
+						<Label id="lblTableSystem" text="Table" />
+						<Text text="{TABLE_NAME_SYSTEM}" />
+						<Label id="lblColumnSystem" text="Column Name" />
+						<Text text="{COLUMN_NAME_SYSTEM}" />
+						<Label id="lblDataTypeSystem" text="Data Type" />
+						<Text text="{DATA_TYPE_NAME_SYSTEM}" />
+						<Label id="lblLengthSystem" text="Length" />
+						<Text text="{LENGTH_SYSTEM}" />
+						<Label id="lblScaleSystem" text="Scale" />
+						<Text text="{SCALE_SYSTEM}" />
+						<Label id="lblGenSystem" text="Generated Always" />
+						<Text text="{GENERATED_ALWAYS_AS_SYSTEM}"/>
+				</form:SimpleForm>
+			</form:SimpleForm>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>
+
+

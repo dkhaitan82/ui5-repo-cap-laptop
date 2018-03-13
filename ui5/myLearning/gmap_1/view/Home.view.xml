@@ -1,0 +1,18 @@
+<mvc:View controllerName="dk.sample.controller.Home" 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" height="100%">
+	<Page title="Google Map Demo">
+		<Button text="Go to Page1" press="onPage1" visible="false"/>
+		<Button text="Show Australia with Marker" press="onShowMarker"/>
+		<Button text="Remove Marker" press="onRemoveMarker"/>
+		<Button text="Show Current Location" press="onCurrentLocation"/>
+		<Button text="Show Kolkata Map" press="showKolkata"/>
+		<Button text="Hide Kolkata Map" press="hideKolkata"/>
+		<Button text="Show India Cities" press="showIndiaCities"/>
+		<Button text="Show Night" press="changeNightStyle"/>
+		<Button text="Geo Chart Example" press="onPage1"/>
+		<HBox id="map_canvas" class="myMap" fitContainer="true" justifyContent="Center" alignItems="Center"/>
+	</Page>
+	</mvc:View>
+
+	

@@ -1,0 +1,30 @@
+<mvc:View
+	controllerName="burberry.hana.util.controller.Users"
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m">
+			<Table
+				id="userTable"
+				selectionMode="Single"
+				visibleRowCount="7"
+				ariaLabelledBy="title"
+				rows="{jobs>/Users}"
+				>
+				<toolbar>
+					<m:Toolbar>
+						<m:Title id="title1" text="User List"></m:Title>
+						<m:ToolbarSpacer/>
+					</m:Toolbar>
+				</toolbar>
+				<columns>
+					<Column>
+						<m:Label text="Email" />
+						<template>
+							<m:Text text="{jobs>USER_EMAIL}" wrapping="false"/>
+						</template>
+					</Column>
+				</columns>
+			</Table>
+</mvc:View>

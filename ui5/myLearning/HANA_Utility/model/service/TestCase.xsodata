@@ -1,0 +1,6 @@
+
+service  { 
+   "HANA_UTIL"."applications.utility.model.db::TEST_CASE"
+   as "TestCase"; 
+   
+}  

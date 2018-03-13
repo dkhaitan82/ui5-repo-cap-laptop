@@ -1,0 +1,217 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "burberry.hana.util",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+	  "sap_belize"
+	]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": "burberry.hana.util.view.App",
+		"dependencies": {
+			"minUI5Version": "1.30",
+			"libs": {
+				"sap.m": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "burberry.hana.util.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+		        }
+	                ]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "burberry.hana.util.view",
+				"controlId": "app",
+				"controlAggregation": "pages"
+			},
+			"routes": [
+				{
+					"pattern": "jobs",
+					"name": "jobs",
+					"target": "jobs"
+		        },
+				{
+					"pattern": "",
+					"name": "home",
+					"target": "home"
+		        },
+				{
+					"pattern": "vc",
+					"name": "vc",
+					"target": "vc"
+		        },
+		        {
+					"pattern": "testPanel",
+					"name": "testPanel",
+					"target": "testPanel"
+		        },
+		        {
+					"pattern": "defineTestCase",
+					"name": "defineTestCase",
+					"target": "defineTestCase"
+		        },
+		        {
+					"pattern": "executeTestCase",
+					"name": "executeTestCase",
+					"target": "executeTestCase"
+		        },
+		        {
+					"pattern": "logTestCase",
+					"name": "logTestCase",
+					"target": "logTestCase"
+		        },
+		        {
+		            "pattern": "testCaseDefineItem",
+					"name": "testCaseDefineItem",
+					 "target":"testCaseDefineItem"
+		        },
+		        {
+		            "pattern": "checkCalcViews",
+					"name": "checkCalcViews",
+					 "target":"checkCalcViews"
+		        },
+		        {
+		            "pattern": "beforeImageView",
+					"name": "beforeImageView",
+					 "target":"beforeImageView"
+		        },
+		        {
+		            "pattern": "afterImageView",
+					"name": "afterImageView",
+					 "target":"afterImageView"
+		        },
+		         {
+		            "pattern": "reconView",
+					"name": "reconView",
+					 "target":"reconView"
+		        },
+		         {
+		            "pattern": "checkVC",
+					"name": "checkVC",
+					 "target":"checkVC"
+		        },
+		        {
+		            "pattern": "dataView",
+					"name": "dataView",
+					 "target":"dataView"
+		        },
+		         {
+		            "pattern": "detailVC",
+					"name": "detailVC",
+					 "target":"detailVC"
+		        }
+	  ],
+			"targets": {
+				"jobs": {
+					"viewName": "Jobs"
+				},
+				"home": {
+					"viewName": "Home"
+				},
+				"vc": {
+					"viewName": "VirtualColumns"
+				},
+				"testPanel": {
+					"viewName": "TestMainPanel"
+				},
+				"testCaseDefineItem":{
+				    "viewName": "TestCaseDefineItem",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"defineTestCase":{
+				    "viewName": "DefineTestCase",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"executeTestCase":{
+				    "viewName": "ExecuteTestCase",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"logTestCase":{
+				    "viewName": "LogTestCase",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"checkCalcViews":{
+				    "viewName": "CheckCalcViews",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"beforeImageView":{
+				    "viewName": "BeforeImageLog",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"afterImageView":{
+				    "viewName": "AfterImageLog",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"reconView":{
+				    "viewName": "ReconcileLog",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"checkVC":{
+				    "viewName": "CheckVirtualColumn",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"dataView":{
+				    "viewName": "TestCaseData",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				},
+				"detailVC":{
+				    "viewName": "DetailVirtualColumn",
+				    "parent":"testPanel",
+				    "controlId":"testSplitPage",
+				    "controlAggregation":"detailPages"
+				}
+			}
+		}
+	}
+}

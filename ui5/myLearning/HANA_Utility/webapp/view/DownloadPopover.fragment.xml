@@ -1,0 +1,36 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		title="Download Options"
+		class="sapUiContentPadding"
+		placement="Bottom"
+			initialFocus="buttonDownload">
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					id="buttonDownload"
+					text="Download"
+					press="onDownloadExcel" />
+				<Button
+					id="buttonPoPCancel"
+					text="Cancel"
+					press="onDownloadCancel" />
+			</Toolbar>
+		</footer>
+		<Select id="inputFileType" text = "Select File Type" selectedKey="{app>/data/download_filetype}" change="onSelectFileType">
+					<items>
+						<core:Item text="CSV" key="CSV"/>
+						<core:Item text="XLS" key="XLS"/>
+					</items>
+		</Select>
+		<Select id="inputSeperator" text = "Select Seperator" selectedKey="{app>/data/download_seperator}" enabled="{app>/data/download_enable_seperator}">
+					<items>
+						<core:Item text="Pipe(|)" key="|"/>
+						<core:Item text="Semicolon(;)" key=";"/>
+						<core:Item text="Comma(,)" key=","/>
+					</items>
+		</Select>
+	</Popover>
+</core:FragmentDefinition>

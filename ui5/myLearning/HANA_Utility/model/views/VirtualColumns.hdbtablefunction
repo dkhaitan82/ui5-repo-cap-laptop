@@ -1,0 +1,55 @@
+FUNCTION "_SYS_BIC"."applications.utility.model.views::VirtualColumns" ()
+RETURNS TABLE (
+
+"SCHEMA_NAME"           NVARCHAR(20), 
+"TABLE_NAME"            NVARCHAR(255), 
+"COLUMN_NAME"           NVARCHAR(255), 
+"DATA_TYPE_NAME"        NVARCHAR(20),
+"LENGTH"                INTEGER,
+"SCALE"                 INTEGER,
+"GENERATED_ALWAYS_AS"   NVARCHAR(2000),
+"ALTER_STATEMENT"       NVARCHAR(2000)
+)
+
+LANGUAGE SQLSCRIPT
+SQL SECURITY DEFINER
+  AS 
+
+BEGIN
+
+var_out = SELECT  
+                "SCHEMA_NAME",
+                "TABLE_NAME",
+                "COLUMN_NAME",
+                "DATA_TYPE_NAME",
+                "LENGTH",
+                "SCALE",
+                "GENERATED_ALWAYS_AS",
+                'ALTER TABLE ' || '"' || "SCHEMA_NAME" || '"."' || "TABLE_NAME" || '" ADD("' || "COLUMN_NAME" || '" ' ||
+                CASE WHEN "DATA_TYPE_NAME"  = 'VARCHAR' OR "DATA_TYPE_NAME"  = 'NVARCHAR' THEN
+                		"DATA_TYPE_NAME" || '(' || "LENGTH" || ') '
+                	 WHEN "DATA_TYPE_NAME"  = 'DECIMAL' THEN
+                	 	"DATA_TYPE_NAME" || '(' || "LENGTH" || ',' || "SCALE" || ') CS_FIXED '
+                	 WHEN "DATA_TYPE_NAME"  = 'INTEGER' THEN
+                	 	'INTEGER CS_INT '
+                     WHEN "DATA_TYPE_NAME"  = 'DATE' THEN
+                	 	'DATE CS_DAYDATE '
+                     ELSE
+                     	"DATA_TYPE_NAME" || ' '
+                     END 
+                     || 'GENERATED ALWAYS AS ' || "GENERATED_ALWAYS_AS" || ' );'
+                     AS "ALTER_STATEMENT"
+            FROM "SYS" ."TABLE_COLUMNS"
+            WHERE "GENERATED_ALWAYS_AS" IS NOT NULL;
+
+return :var_out;
+END;
+
+
+
+
+
+
+
+
+

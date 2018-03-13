@@ -1,0 +1,62 @@
+<mvc:View
+	controllerName="burberry.hana.util.controller.VirtualColumns"
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:m="sap.m">
+	<m:Page title="Virtual Columns" showNavButton="true" navButtonPress="onNavBack" class="masterPageStyle">
+		<m:content>
+			<Table
+				id="vcTable"
+				selectionMode="Single"
+				visibleRowCount="10"
+				rows="{vc>/VirtualColumns}"
+				rowSelectionChange="onItemSelected"
+				>
+				<toolbar>
+					<m:Toolbar>
+						<m:Title id="title1" text="Virtual Columns"></m:Title>
+						<m:ToolbarSpacer/>
+						<m:SearchField placeholder="Search"	value="" search="filterVC" width="20rem"/>
+						<m:Button id="excelButton" press="showPopover" icon="sap-icon://download" tooltip="Download"/>
+					</m:Toolbar>
+				</toolbar>
+				<columns>
+					<Column sortProperty="SCHEMA_NAME" filterProperty="SCHEMA_NAME">
+						<m:Label text="Schema" />
+						<template>
+							<m:Text text="{vc>SCHEMA_NAME}" wrapping="false"/>
+						</template>
+					</Column>
+					<Column sortProperty="TABLE_NAME" filterProperty="TABLE_NAME">
+						<m:Label text="Table" />
+						<template>
+							<m:Text text="{vc>TABLE_NAME}" wrapping="false"/>
+						</template>
+					</Column>
+					<Column sortProperty="COLUMN_NAME" filterProperty="COLUMN_NAME">
+						<m:Label text="Column" />
+						<template>
+							<m:Text text="{vc>COLUMN_NAME}" wrapping="false"/>
+						</template>
+					</Column>
+					<Column>
+						<m:Label text="Generated Always As" />
+						<template>
+							<m:Text text="{vc>GENERATED_ALWAYS_AS}" wrapping="true"/>
+						</template>
+					</Column>
+				</columns>
+			</Table>
+			<form:SimpleForm 
+				id="VCForm" layout="ResponsiveGridLayout">
+				<form:content>
+					<m:Label labelFor="inputAlterStatement" text="Alter Statement" />
+					<m:TextArea id="inputAlterStatement" value="{vc>ALTER_STATEMENT}"/>
+				</form:content>
+			</form:SimpleForm>
+		</m:content>
+	</m:Page>
+</mvc:View>

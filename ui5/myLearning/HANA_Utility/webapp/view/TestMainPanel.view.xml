@@ -1,0 +1,36 @@
+<mvc:View id="vTPanel"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="burberry.hana.util.controller.TestMainPanel"
+	xmlns="sap.m">
+	<SplitContainer id="testSplitPage" initialMaster="master">
+		<detailPages>
+		    <Page title="Automatic Testing" class="detailPageStyle"/>
+		</detailPages>
+		<masterPages>
+			<Page id="master" title="Menu" showNavButton="true" navButtonPress="onPressMasterBack" class="masterPageStyle">
+				<content>
+					<List>
+						<items>
+							<StandardListItem title="Define Test Case" type="Navigation" press="onPressGoToDefineTestCase"/>
+							<StandardListItem title="Execute Test Case" type="Navigation" press="onPressGoToExecuteTestCase"/>
+							<StandardListItem title="Test Case Log" type="Navigation" press="onPressGoToLogTestMaster"/>
+							<StandardListItem title="Check HANA Views" type="Navigation" press="onPressGoToCheckCalcViews"/>
+							<StandardListItem title="Check Virtual Columns" type="Navigation" press="onPressGoToCheckVirtualColumns"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+			<Page id="LogMaster" title="Test Case Log" showNavButton="true" navButtonPress="onPressBackMaster1" class="masterPageStyle">
+				<content>
+					<List>
+						<items>
+							<StandardListItem title="Before Image" type="Navigation" press="onPressGoToBeforeImage"/>
+							<StandardListItem title="After Image" type="Navigation" press="onPressGoToAfterImage"/>
+							<StandardListItem title="Reconcile" type="Navigation" press="onPressGoToReconcile"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+		</masterPages>
+	</SplitContainer>
+</mvc:View>

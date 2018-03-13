@@ -1,0 +1,38 @@
+<mvc:View
+  controllerName="dk.sample.controller.Page1"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:layout="sap.ui.layout">
+	<App>
+		<pages>
+			<Page	id="page1"	title="Designed in XML View" navButtonPress="onNavBack" showNavButton="true">
+				<content>
+							<viz:VizFrame id="idVizFrame"  title="Milk Stores" uiConfig="{applicationSet:'fiori'}"
+									height='100%' width="100%" vizType='pie'>
+									<viz:dataset>
+											<viz.data:FlattenedDataset data="{/milk}">
+													<viz.data:dimensions>
+															<viz.data:DimensionDefinition name="Store Name"
+																	value="{Store Name}" />
+													</viz.data:dimensions>
+													<viz.data:measures>
+															<viz.data:MeasureDefinition name="Revenue"
+																	value="{Revenue}" />
+													</viz.data:measures>
+											</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+											<viz.feeds:FeedItem uid="size" type="Measure"
+													values="Revenue" />
+											<viz.feeds:FeedItem uid="color" type="Dimension"
+													values="Store Name" />
+									</viz:feeds>
+							</viz:VizFrame>
+        </content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

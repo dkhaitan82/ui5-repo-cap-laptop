@@ -1,0 +1,31 @@
+<View controllerName="dk.sample.controller.Home" 
+	  xmlns="sap.m" 
+	  xmlns:mvc="sap.ui.core.mvc" 
+	  xmlns:core="sap.ui.core"
+	  displayBlock="true" height="100%">
+	<Page title="Global Customer View for Stores">
+		<headerContent>
+			<Button text="Chart" press="onGoPage1" icon="sap-icon://business-objects-experience"/>
+		</headerContent>
+		<subHeader>
+			<Toolbar design="Transparent">
+				<content>
+					<Button text="Change Data" press="onChangeData" visible="false"/>
+					<ComboBox id="selectStore" showSecondaryValues="true" items="{path: 'sales>/Sales'}" change="onChangeData">
+						<core:ListItem key="{sales>PHY_STORE_NO}" text="{sales>STORE_NAME}" additionalText= "{sales>PHY_STORE_NO}"/>
+					</ComboBox>
+					<ComboBox id="selectPeriod" items="{path: 'sales>/Sales'}" change="onChangeData">
+						<core:ListItem key="{sales>CA_FISCPER_Z5}" text="{sales>CA_FISCPER_Z5}"/>
+					</ComboBox>
+					<Label text="KPI" labelFor="selectKPI"/>
+					<Select id="selectKPI" selectedKey = "AMOUNT" change="onChangeData">
+						<core:ListItem key="AMOUNT" text="Sales Amount"/>
+						<core:ListItem key="COUNT" text="Transaction Count"/>
+					</Select>
+					<ToolbarSpacer />
+				</content>
+			</Toolbar>
+		</subHeader>
+		<HBox id="geo_chart_canvas" class="myMap" fitContainer="true" justifyContent="Center" alignItems="Center" />
+	</Page>
+</View>
